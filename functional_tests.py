@@ -34,17 +34,17 @@ class NewVisitorTest(unittest.TestCase):
         #She types "buy peacock feathers" into a text box (Edith's hobby 
         # is tying fly-fishing lures)
         inputbox.send_keys('Buy peacock feathers')
-        
+        time.sleep(3)
         # WHen she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-do list table
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(3)
         
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.TAG_NAME,'tr')
         self.assertTrue(
             any(row.text == '1: Buy peacock feathers' for row in rows), 
-            "New to-do item did not apper in table."
+            f"New to-do item did not apper in table. Contents were: \n{table.text}"
         )
         
         # There is still a text box inviting her to add another item. She 
