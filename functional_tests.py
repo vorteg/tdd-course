@@ -44,7 +44,7 @@ class NewVisitorTest(unittest.TestCase):
         # "1: Buy peacock feathers" as an item in a to-do list table
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_list_table('1: Buy peacock feathers')
+        self.check_for_row_in_list_table('1:Buy peacock feathers')
         
         #Ther is stil a text  box inviting her to add another item. SHe
         # enters "Use peacock feathers to make a fly" ( Edith is very 
@@ -54,8 +54,8 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
         
-        self.check_for_row_in_list_table('1: Buy peacock feathers')
-        self.check_for_row_in_list_table('2: Buy peacock feathers to make a fly')
+        self.check_for_row_in_list_table('1:Buy peacock feathers')
+        self.check_for_row_in_list_table('2:Use peacock feathers to make a fly')
         
         # table = self.browser.find_element(By.ID, 'id_list_table')
         # rows = table.find_elements(By.TAG_NAME,'tr')

@@ -16,7 +16,9 @@
     <table id="id_list_table">
         <caption>To DO List</caption>
         <th>Saved</th>
-        <tr><td>{{new_item_text}}</td></tr>
+        {% for item in items %}
+            <tr><td>{{ forloop.counter }}:{{item.text}}</td></tr>
+        {% endfor %}
     </table>
     
 </body>
