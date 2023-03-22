@@ -8,14 +8,15 @@
 </head>
 <body>
     <h1>To-Do</h1>
-    <form action="" method="get">
-        <input type="text" placeholder="Enter a to-do item" id="id_new_item">
+    <form action="/", method="post">
+        <input type="text" placeholder="Enter a to-do item" id="id_new_item" name="item_text">
         {% csrf_token %}
+        <button type="submit">Enviar</button>
     </form>
     <table id="id_list_table">
         <caption>To DO List</caption>
         <th>Saved</th>
-        <tr><td>{{holi}}</td></tr>
+        <tr><td>{{new_item_text}}</td></tr>
     </table>
     
 </body>
