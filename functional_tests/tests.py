@@ -4,7 +4,10 @@ from selenium import webdriver
 #There is a change to use `*find_element` now is using `by` methode
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import WebDriverException
 from django.test import LiveServerTestCase
+
+MAX_WAIT = 10
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -58,6 +61,18 @@ class NewVisitorTest(LiveServerTestCase):
         self.check_for_row_in_list_table('1:Buy peacock feathers')
         self.check_for_row_in_list_table('2:Use peacock feathers to make a fly')
         
+    def wait_for_row_in_list_table(self, row_text):
+        start_time = time.time()
+        while True:
+            try:
+                table = self.browser.find_element(By.ID, 'id_list_table')
+                rows = table.find_elements(By.TAG_NAME,'tr')
+                self.assertIn(row_text,[row.text for row in rows])
+                return                
+            except (AssertionError, WebDriverException) as e:
+                if time.time() - start_time > MAX_WAIT:
+                    raise e
+                time.sleep(0.5)
         # table = self.browser.find_element(By.ID, 'id_list_table')
         # rows = table.find_elements(By.TAG_NAME,'tr')
         # self.assertTrue(
